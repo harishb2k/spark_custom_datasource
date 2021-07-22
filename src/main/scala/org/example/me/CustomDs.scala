@@ -1,17 +1,42 @@
-package org.example
+package org.example.me
 
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.types.{IntegerType, StructField, StructType}
+
+class CustomDs {
+
+  /*def main(args: Array[String]): Unit = {
+    // STEP 1 - Setup spark session for testing
+    val spark = SparkSession.builder().master("local[100]").getOrCreate()
+
+    val schema = StructType(StructField("id", IntegerType, true) :: Nil)
+
+    // Step 1.1 - use my custom format. We will implement this format.
+    spark
+      .read
+      .schema(schema)
+      .format("me")
+      .load
+      .show
+  }*/
+}
 
 object CustomDs extends App {
 
   // STEP 1 - Setup spark session for testing
   val spark = SparkSession.builder().master("local[*]").getOrCreate()
+  // val spark = SparkSession.builder().getOrCreate()
 
   val schema = StructType(StructField("id", IntegerType, true) :: Nil)
 
   // Step 1.1 - use my custom format. We will implement this format.
-  spark.read.schema(schema).format("me").load.show
+  spark
+    .read
+    .schema(schema)
+    .format("me")
+    .load
+    // .repartition(20)
+    .show
 
   // Step 2 - Create a relation provider
   // Spark look for a class of type "DataSourceRegister" which implements method shortName() and returns the format name
@@ -31,4 +56,6 @@ object CustomDs extends App {
   // buildScan will give you a RDD which provides 2 things
   // 1. Information about underlying partitions
   // 2. compute() method which will give the real data from underlying system
+
+   // Thread.sleep(10000000)
 }

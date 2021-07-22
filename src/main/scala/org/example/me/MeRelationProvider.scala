@@ -49,10 +49,47 @@ class HarishRdd(sc: SparkContext) extends RDD[Row](sc, Nil) {
   // Since this Partition class is passed in the compute method. You will be able to know how much data has to be pulled
   // for a singel job
   override protected def getPartitions: Array[Partition] = Array(
-    {
-      new Partition {
-        override def index: Int = 0
-      }
+    new Partition {
+      override def index: Int = 0
+    },
+    new Partition {
+      override def index: Int = 1
+    },
+    new Partition {
+      override def index: Int = 2
+    },
+    new Partition {
+      override def index: Int = 3
+    },
+    new Partition {
+      override def index: Int = 4
+    },
+    new Partition {
+      override def index: Int = 5
+    },
+    new Partition {
+      override def index: Int = 6
+    },
+    new Partition {
+      override def index: Int = 7
+    },
+    new Partition {
+      override def index: Int = 8
+    },
+    new Partition {
+      override def index: Int = 9
+    },
+    new Partition {
+      override def index: Int = 10
+    },
+    new Partition {
+      override def index: Int = 11
+    },
+    new Partition {
+      override def index: Int = 12
+    },
+    new Partition {
+      override def index: Int = 13
     }
   )
 }
